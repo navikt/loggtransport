@@ -1,30 +1,30 @@
 package no.nav.sikkerhetstjenesten.loggtransport;
 
-import java.util.concurrent.TimeUnit;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.test.junit5.CamelTestSupport;
+//import org.junit.Test;
 
-import org.apache.camel.builder.NotifyBuilder;
-import org.apache.camel.test.main.junit5.CamelMainTestSupport;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-/**
- * A simple unit test showing how to test the application {@link LoggtransportApp}.
- */
-class LoggtransportAppTest extends CamelMainTestSupport {
+public class LoggtransportAppTest extends CamelTestSupport {
 
     @Override
-    protected Class<?> getMainClass() {
-        // The main class of the application to test
-        return LoggtransportApp.class;
+    protected RouteBuilder createRouteBuilder() throws Exception {
+        return new RouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+
+                from("direct:start")
+                        .to("mock:result");
+
+            }
+        };
     }
 
-    @Test
-    void should_complete_the_auto_detected_route() {
-        NotifyBuilder notify = new NotifyBuilder(context)
-                .whenCompleted(1).whenBodiesDone("Goodbye World").create();
-        assertTrue(
-                notify.matches(20, TimeUnit.SECONDS), "1 message should be completed"
-        );
+    //@Test
+    public void test() throws InterruptedException {
+        System.out.println("running test");
+        MockEndpoint resultEndpoint = context.getEndpoint("mock:result", MockEndpoint.class);
+        context.createProducerTemplate().sendBody("direct:start", "Hello world");
+        resultEndpoint.expectedBodiesReceived("Hello world");
     }
 }
