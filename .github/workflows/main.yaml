@@ -5,6 +5,7 @@ on:
       - main
     paths-ignore:
       - "*.md"
+
 jobs:
   test-build-deploy:
     permissions:
