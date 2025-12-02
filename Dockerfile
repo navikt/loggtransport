@@ -1,7 +1,7 @@
 FROM gcr.io/distroless/java17-debian12
 
-COPY build/libs/*.jar /app/
+#LABEL org.opencontainers.image.source=https://github.com/navikt/fp-soknad
 
-WORKDIR /app
-
-CMD ["app.jar"]
+COPY target/classes/logback*.xml conf/
+COPY target/lib/*.jar lib/
+COPY target/app.jar .
