@@ -46,15 +46,6 @@ spec:
       rules:
         - application: logging
           namespace: nais-system
-    inbound:
-      rules:
-        {{#each inbound as |app|}}
-           - application: '{{app.name}}'
-               namespace: '{{app.namespace}}'
-               cluster: '{{app.cluster}}'
-               {{/each}}
-        - application: monitoring-prometheus-blackbox-exporter
-          namespace: nais-system
   env:
     - name: NAIS_CLUSTER_TYPE
       value: {{nais.cluster.type}}
