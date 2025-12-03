@@ -54,7 +54,7 @@ jobs:
     needs: test-build-deploy
     strategy:
       matrix:
-        cluster: [ dev-gcp, prod-gcp ]
+        cluster: [ dev-gcp ] #[ dev-gcp, prod-gcp ]
     name: Deploy to ${{ matrix.cluster }}
     environment: ${{ matrix.cluster }}:sikkerhetstjenesten
     steps:
@@ -65,4 +65,5 @@ jobs:
         env:
           RESOURCE: .nais/naiserator.yaml
           CLUSTER: ${{ matrix.cluster }}
+          VARS: .nais/${{matrix.cluster}}.json
           IMAGE: ${{ needs.test-build-deploy.outputs.image }}

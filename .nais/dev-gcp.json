@@ -29,7 +29,7 @@
   },
   "mem": {
     "min": "32Mi",
-    "max": "32Mi"
+    "max": "1Gi"
   },
   "cpu": {
     "min": "50m"
