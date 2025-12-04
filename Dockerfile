@@ -4,4 +4,5 @@ FROM gcr.io/distroless/java17-debian12
 
 #COPY target/classes/logback*.xml conf/
 #COPY target/lib/*.jar lib/
+COPY target/dependency/*.jar .
 COPY target/loggtransport*.jar .
