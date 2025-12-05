@@ -87,6 +87,9 @@
   </dependencies>
 
   <build>
+    <!-- setter til app da det er default for jar som kjøres i nais baseimages -->
+    <finalName>app</finalName>
+
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
