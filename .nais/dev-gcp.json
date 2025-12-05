@@ -1,5 +1,7 @@
 {
-  "ingresses": [],
+  "ingresses": [
+    "https://loggtransport.intern.dev.nav.no"
+  ],
 
   "db": {
     "poolsize": "2",

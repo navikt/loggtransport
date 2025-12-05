@@ -110,6 +110,19 @@
               </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+              <archive>
+                  <manifest>
+                      <addClasspath>true</addClasspath>
+                      <classpathPrefix>lib/</classpathPrefix>
+                      <mainClass>no.nav.sikkerhetstjenesten.LoggtransportApp</mainClass>
+                  </manifest>
+              </archive>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
