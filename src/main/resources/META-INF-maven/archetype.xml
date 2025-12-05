@@ -1,0 +1,9 @@
+<archetype>
+  <id>loggtransport</id>
+  <sources>
+    <source>src/main/java/no/nav/sikkerhetstjenesten/loggtransport/LoggtransportApp.java</source>
+  </sources>
+  <testSources>
+    <source>src/test/java/no/nav/sikkerhetstjenesten/loggtransport/LoggtransportAppTest.java</source>
+  </testSources>
+</archetype>

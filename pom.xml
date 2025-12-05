@@ -78,6 +78,7 @@
       <artifactId>camel-rest</artifactId>
     </dependency>
 
+    <!-- Dependencies' dependencies -->
     <dependency>
       <groupId>org.lz4</groupId>
       <artifactId>lz4-java</artifactId>
@@ -86,46 +87,45 @@
   </dependencies>
 
   <build>
-    <defaultGoal>install</defaultGoal>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M5</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <executions>
-              <execution>
-                  <id>copy-dependencies</id>
-                  <phase>package</phase>
-                  <goals>
-                      <goal>copy-dependencies</goal>
-                  </goals>
-                  <configuration>
-                      <outputDirectory>${project.basedir}/target/lib/</outputDirectory>
-                      <includeScope>runtime</includeScope>
-                  </configuration>
-              </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <configuration>
-              <archive>
-                  <manifest>
-                      <addClasspath>true</addClasspath>
-                      <classpathPrefix>lib/</classpathPrefix>
-                      <mainClass>no.nav.sikkerhetstjenesten.LoggtransportApp</mainClass>
-                  </manifest>
-              </archive>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>copy-dependencies</id>
+                <phase>package</phase>
+                <goals>
+                    <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${project.basedir}/target/lib/</outputDirectory>
+                    <includeScope>runtime</includeScope>
+                </configuration>
+            </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+            <archive>
+                <manifest>
+                    <addClasspath>true</addClasspath>
+                    <classpathPrefix>lib/</classpathPrefix>
+                    <mainClass>no.nav.sikkerhetstjenesten.loggtransport.LoggtransportApp</mainClass>
+                </manifest>
+            </archive>
+        </configuration>
+      </plugin>
+
+
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.2.0</version>
@@ -133,6 +133,7 @@
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-maven-plugin</artifactId>
@@ -142,6 +143,7 @@
           <mainClass>no.nav.sikkerhetstjenesten.loggtransport.LoggtransportApp</mainClass>
         </configuration>
       </plugin>
+
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.10.1</version>
@@ -152,5 +154,6 @@
         </configuration>
       </plugin>
     </plugins>
+
   </build>
 </project>
