@@ -53,6 +53,22 @@
       <version>${camel-version}</version>
     </dependency>
 
+    <!-- Prometheus-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>at.yawk.lz4</groupId>
+      <artifactId>lz4-java</artifactId>
+      <version>[1.10.1,)</version>
+    </dependency>
+
   </dependencies>
 
   <build>
