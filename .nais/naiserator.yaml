@@ -7,6 +7,18 @@ metadata:
     team: sikkerhetstjenesten
 spec:
   leaderElection: false
+  gcp:
+    sqlInstances:
+      - type: {{db.type}}
+        tier: {{db.tier}}
+        databases:
+          - name: {{db.name}}
+            envVarPrefix: DB
+        flags:
+          - name: cloudsql.enable_pgaudit
+            value: "{{db-flags.pgaudit.enabled}}"
+          - name: pgaudit.log
+            value: "{{db-flags.pgaudit.logtype}}"
   ingresses:
     {{#each ingresses as |ingress|}}
        - {{ingress}}

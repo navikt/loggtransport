@@ -31,10 +31,10 @@
   },
   "mem": {
     "min": "32Mi",
-    "max": "1Gi"
+    "max": "256Mi"
   },
   "cpu": {
-    "min": "50m"
+    "min": "143m"
   },
   "replica": {
     "min": 1,
