@@ -2,6 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.5.8</version>
+  </parent>
+
   <groupId>no.nav.sikkerhetstjenesten</groupId>
   <artifactId>loggtransport</artifactId>
   <version>1.0.0-SNAPSHOT</version>
@@ -11,7 +18,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <camel-version>4.15.0</camel-version>
-      <spring-version>3.5.8</spring-version>
+    <spring-version>3.5.8</spring-version>
     <java.version>17</java.version>
   </properties>
 
@@ -38,7 +45,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <version>${spring-version}</version>
     </dependency>
 
     <dependency>
@@ -73,12 +79,73 @@
 
   <build>
     <plugins>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${spring-version}</version>
-        </plugin>
+      <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M5</version>
+      </plugin>
+
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <executions>
+              <execution>
+                  <id>copy-dependencies</id>
+                  <phase>package</phase>
+                  <goals>
+                      <goal>copy-dependencies</goal>
+                  </goals>
+                  <configuration>
+                      <outputDirectory>${project.basedir}/target/lib/</outputDirectory>
+                      <includeScope>runtime</includeScope>
+                  </configuration>
+              </execution>
+          </executions>
+      </plugin>
+
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+              <archive>
+                  <manifest>
+                      <addClasspath>true</addClasspath>
+                      <classpathPrefix>lib/</classpathPrefix>
+                      <mainClass>no.nav.sikkerhetstjenesten.loggtransport.LoggtransportApp</mainClass>
+                  </manifest>
+              </archive>
+          </configuration>
+      </plugin>
+
+
+      <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+              <encoding>UTF-8</encoding>
+          </configuration>
+      </plugin>
+
+      <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-maven-plugin</artifactId>
+          <version>3.18.3</version>
+          <configuration>
+              <logClasspath>true</logClasspath>
+              <mainClass>no.nav.sikkerhetstjenesten.loggtransport.LoggtransportApp</mainClass>
+          </configuration>
+      </plugin>
+
+      <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.10.1</version>
+          <configuration>
+              <release>11</release>
+              <source>17</source>
+              <target>17</target>
+          </configuration>
+      </plugin>
     </plugins>
+
   </build>
 
 </project>
