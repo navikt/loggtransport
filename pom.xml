@@ -19,7 +19,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <camel-version>4.15.0</camel-version>
     <maven-version>3.9.11</maven-version>
-    <spring-version>3.5.8</spring-version>
+    <spring-version>4.0.0</spring-version>
     <java.version>21</java.version>
   </properties>
 
