@@ -1,6 +1,9 @@
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/jdk:openjdk-21
 
-COPY target/lib/*.jar ./lib/
-COPY target/app.jar .
+# Working dir for RUN, CMD, ENTRYPOINT, COPY and ADD (required because of nonroot user cannot run commands in root)
+WORKDIR /app
 
-CMD ["-jar", "app.jar"]
+COPY target/*.jar app.jar
+COPY content content
+
+CMD ["java", "-jar", "app.jar"]
