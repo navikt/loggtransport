@@ -15,7 +15,7 @@ jobs:
           fail-on-severity: high # Fail if introducing high or critical vulnerabilities
       - uses: actions/setup-java@v5
         with:
-          java-version: 17
+          java-version: 21
           distribution: temurin
           cache: maven
       #- uses: gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2
