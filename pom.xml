@@ -61,6 +61,13 @@
       <version>${camel-version}</version>
     </dependency>
 
+    <!-- Scheduling -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-quartz</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+
     <!-- Prometheus-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
