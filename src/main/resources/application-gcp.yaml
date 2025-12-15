@@ -1,3 +1,28 @@
+management:
+  info:
+    git:
+      mode: simple
+  observations:
+    annotations:
+      enabled: true
+  health:
+    group:
+      readiness:
+        show-components: never
+      liveness:
+        show-components: never
+    redis:
+      enabled: false
+    ssl:
+      enabled: false
+    ping:
+      enabled: false
+    diskspace:
+      enabled: false
+  endpoints:
+    web:
+      base-path: /monitoring
+
 spring:
   threads:
     virtual:
