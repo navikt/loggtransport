@@ -10,6 +10,9 @@ public class TestRoute extends RouteBuilder {
     @Override
     public void configure() {
         from("timer://simpleTimer?period=600000")
-                .log("Hello World");
+                .log("Hello World")
+                .setBody(simple("SELECT * FROM testlogger"))
+                .to("spring-jdbc:datasource")
+                .log("Hello select");
     }
 }
