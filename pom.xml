@@ -26,7 +26,15 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+      <!-- Camel BOM -->
+      <dependency>
+        <groupId>org.apache.camel.springboot</groupId>
+        <artifactId>camel-spring-boot-bom</artifactId>
+        <version>${camel-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Spring Boot BOM -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
@@ -38,6 +46,7 @@
   </dependencyManagement>
 
   <dependencies>
+
     <dependency>
       <groupId>org.apache.camel.springboot</groupId>
       <artifactId>camel-spring-boot-starter</artifactId>
@@ -51,14 +60,26 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test-main-junit5</artifactId>
+      <artifactId>camel-spring-jdbc</artifactId>
       <version>${camel-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel.springboot</groupId>
+      <artifactId>camel-quartz-starter</artifactId>
+    </dependency>
+
+    <!-- test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-spring-jdbc</artifactId>
+      <artifactId>camel-test-main-junit5</artifactId>
       <version>${camel-version}</version>
+      <scope>test</scope>
     </dependency>
 
     <!-- H2 -->
@@ -91,12 +112,12 @@
     <dependency>
       <groupId>at.yawk.lz4</groupId>
       <artifactId>lz4-java</artifactId>
-      <version>1.10.2</version>
+      <version>[1.10.2,)</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-http</artifactId>
-      <version>12.1.5</version>
+      <version>[12.1.5,)</version>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
@@ -112,7 +133,7 @@
   </dependencies>
 
   <build>
-    <!-- Rename to app.jar -->
+    <!-- Rename to loggtransport.jar -->
     <finalName>${project.artifactId}</finalName>
     <plugins>
         <plugin>
