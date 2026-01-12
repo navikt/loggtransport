@@ -27,10 +27,6 @@ spring:
   threads:
     virtual:
       enabled: true
-  jpa:
-    properties:
-      hibernate:
-        generate_statistics: false
   application:
     name: loggtransport
   datasource:

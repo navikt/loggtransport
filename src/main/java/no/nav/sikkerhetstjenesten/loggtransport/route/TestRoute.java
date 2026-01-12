@@ -2,16 +2,21 @@ package no.nav.sikkerhetstjenesten.loggtransport.route;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import javax.sql.DataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Component
 public class TestRoute extends RouteBuilder {
 
+    @Bean(name = {"jdbcTemplate", "JdbcTemplate"})
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
     @Override
     public void configure() {
-        //from("timer://simpleTimer?period=600000") // 10 minutter
-        //from("quartz://myGroup/myTimerName?cron=30+6+*+*+*+?")   // DB2 06:30 eller 7?
-        from("quartz://myGroup/myTimerName?cron=45+*+*+*+*+?")   // Oracle (kvart på) hver time
-                .setBody(constant("Test body"))
-                .log("Hello World");
+        from("quartz://myGroup/myTestTimer?cron=*/10+*+*+*+*+?")
+                .log("Hello world ${body}");
     }
 }
