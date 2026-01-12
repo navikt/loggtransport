@@ -3,8 +3,10 @@ package no.nav.sikkerhetstjenesten.loggtransport;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
+import org.springframework.boot.test.context.TestComponent;
 //import org.junit.Test;
 
+@TestComponent
 public class LoggtransportAppTest extends CamelTestSupport {
 
     @Override
@@ -22,7 +24,7 @@ public class LoggtransportAppTest extends CamelTestSupport {
 
     //@Test
     public void test() throws InterruptedException {
-        System.out.println("running test");
+        System.out.println("Running test:");
         MockEndpoint resultEndpoint = context.getEndpoint("mock:result", MockEndpoint.class);
         context.createProducerTemplate().sendBody("direct:start", "Hello world");
         resultEndpoint.expectedBodiesReceived("Hello world");

@@ -16,7 +16,7 @@ public class TestRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        from("quartz://myGroup/myTestTimer?cron=*/10+*+*+*+*+?")
+        from("quartz://myGroup/myTestTimer?cron=*+*/10+*+*+*+?")
                 .log("Hello world ${body}");
     }
 }
