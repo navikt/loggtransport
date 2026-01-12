@@ -51,8 +51,6 @@ spec:
     requests:
       cpu: '{{cpu.min}}'
       memory: '{{mem.min}}'
-  secureLogs:
-    enabled: true
   accessPolicy:
     outbound:
       rules:
