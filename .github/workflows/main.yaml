@@ -35,7 +35,7 @@ jobs:
       - name: Build & package
         run: mvn -B package   # --batch-mode to run Maven in a non-interactive, CI environment
       - name: Build & push docker image + SBOM
-        uses: nais/docker-build-push@1fae4798c79f4af4c3cdbd3fe65e51f8f3ba2368
+        uses: nais/docker-build-push@3b44f7c419b9511ad7c8b72174b3cc078d570bed
         id: docker-push
         with:
           team: sikkerhetstjenesten # team name
