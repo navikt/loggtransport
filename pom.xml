@@ -19,7 +19,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <camel-version>4.17.0</camel-version>
-    <logback.version>1.5.24</logback.version>
+    <logback.version>1.5.25</logback.version>
     <logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
     <maven-version>3.9.11</maven-version>
     <spring-version>4.0.1</spring-version>
